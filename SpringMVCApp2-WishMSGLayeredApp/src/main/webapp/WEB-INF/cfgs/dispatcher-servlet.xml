@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+
+
+
+ <!--  Handler Mapping -->
+ 
+   <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+       <property name="mappings">
+             <props>
+                 <prop key="welcome.htm">shc</prop>
+                 <prop key="wish.htm">wmc</prop>
+                 
+             </props>
+       </property>
+   </bean>
+   
+    <!-- Controllers -->
+   <bean id="shc" class="com.nt.controller.ShowHomeController"/>
+   <bean id="wmc" class="com.nt.controller.WishMessageController">
+   <constructor-arg ref=" wishmsg"/>
+    </bean>
+    
+    <!-- Service mapping -->
+   <bean id=" wishmsg" class="com.nt.service.WishMessageServiceImpl"/>
+    <!-- View Resolver -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+          <property name="prefix"  value="/WEB-INF/pages/" />
+          <property name="suffix"  value=".jsp"/>
+    </bean>
+</beans>
